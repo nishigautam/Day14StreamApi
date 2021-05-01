@@ -11,4 +11,5 @@ public interface AddressBookAdd {
     public void searchPersonByState(String firstname);
     public void viewByCity(String city);
     public  void viewByState(String state);
+    public void CountByCity(String City);
 }

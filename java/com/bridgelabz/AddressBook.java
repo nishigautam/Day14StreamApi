@@ -1,15 +1,15 @@
 package com.bridgelabz;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.TreeMap;
 
 /**
  * the below method is for adding the contact into address book
  */
 public class AddressBook implements AddressBookAdd {
+    private static Map<String, List<PersonDetail>> addressBookMap = new TreeMap<>();
+
     List<PersonDetail> contact = new ArrayList<>();
     Scanner input = new Scanner(System.in);
 
@@ -148,6 +148,21 @@ public class AddressBook implements AddressBookAdd {
         Map<String, PersonDetail> map = personList.stream().collect(Collectors.toMap(PersonDetail::getFirstname, personDetail -> personDetail));
         System.out.println();
     }
+
+    @Override
+    public void CountByCity(String City) {
+        int countPerson = 0;
+        for(Map.Entry<String, List<PersonDetail>> entry : addressBookMap.entrySet()) {
+            for (int i = 0; i < contact.size(); i++) {
+                if (contact.get(i).getCity().equals(City)) {
+                    System.out.println(contact.get(i));
+                    countPerson = i;
+                }
+            }
+        }
+        System.out.println("Number of Person in" + City + "is" + countPerson);
+    }
+
 
     /**
      *
